@@ -1,0 +1,23 @@
+body {
+	
+	font-family: "Arial"
+}
+
+.table {
+	
+	text-align: center;
+}
+
+.table h4 {
+	
+	text-transform: capitalize;
+	text-decoration: underline;
+}
+
+
+.table td {
+	
+	padding: 5px 20px;
+	border: 1px solid black; 
+	padding-bottom: 20px;
+}
