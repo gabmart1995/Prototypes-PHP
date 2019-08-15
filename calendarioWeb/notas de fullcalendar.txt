@@ -1,0 +1,7 @@
+Notas de fullcalendar:
+
+Plugins y librerías que debes incluir:
+
+dayGrid: es el plugin que crea el calendario y lo renderiza dentro de la aplicación.
+
+interaction: es el plugin que crea todas las interacciones del calendario. Promesas y Callbacks que se utiliza para obtener los datos. 
