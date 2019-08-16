@@ -28,6 +28,14 @@
 		<!-- =============================== -->
 		<script src="./../assets/vendor/jquery/jquery-3.4.1.min.js"></script>
 		<script src="./../assets/vendor/bootstrap/bootstrap.js"></script>
+		<!-- <script src="./../assets/js/data/buttons.js"></script>  -->
+		<script src="./../assets/js/data/events.js"></script>
 		<script src="./../assets/js/calendar.js"></script>
+
+		<!-- =============================== -->
+		<!-- 		PHP 					 -->
+		<!-- =============================== -->
+		<?php  include './components/modal.php'  ?>
+
 	</body>
 </html>
