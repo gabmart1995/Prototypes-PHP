@@ -2,7 +2,7 @@ const urlData = 'http://localhost/tutorial-php/calendarioWeb/data/events.php';
 
 const calendarOptions = {
 
-	plugins: [ 'dayGrid', 'interaction', 'moment', 'timeGrid' ],
+	plugins: [ 'dayGrid', 'interaction' ],
 	locale: 'es',
 
 	header: {
@@ -12,41 +12,42 @@ const calendarOptions = {
 	},
 
 	customButtons: {
-		boton1: botones.mensaje,
+		boton1: botones.mensaje, 
 		boton2: botones.accion
-	}, 
+	},
 
 	//trae los datos de los archivos de PHP 
 	events: urlData,
 
 	eventClick: ( info ) => {
 
-		// console.log( info );
+		// console.log( info ); 
 
 		let tituloEvento = info.event._def.title;
 		let descripcionEvento = info.event._def.extendedProps.description;
 
-		// inyeccion de HTML con JQuery.
-		$( '#tituloEvento' ).html( tituloEvento );
+		$( '#titulo' ).html( tituloEvento );
 		$( '#descripcionEvento' ).html( descripcionEvento );
 
-		$( '#calendarModal' ).modal();
+		$( '#consultEvent' ).modal();
 	},
 
 	dateClick: ( info ) => {
 
 		// console.log( info );
 
+		$( '#tituloEvento' ).html( 'Nuevo Evento' );
 		$( '#txtFecha' ).val( info.dateStr );
+
 		$( '#modalEventos' ).modal();
 	}
 };
 
 let calendarEl = document.getElementById( 'calendar' );
 
-$( document ).ready( () => {
+const calendar = new FullCalendar.Calendar( calendarEl, calendarOptions );
 
-	const calendar = new FullCalendar.Calendar( calendarEl, calendarOptions );
+$( document ).ready( () => {
 
 	calendar.render();
 });

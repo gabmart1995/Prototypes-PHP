@@ -1,5 +1,5 @@
 // ----------------------------------------------
-// 		Agregar un nuevo evento
+// 		Agrega un nuevo evento
 // ----------------------------------------------
 $( '#btnAgregar' ).click( () => {
 
@@ -12,7 +12,9 @@ $( '#btnAgregar' ).click( () => {
 		textColor: '#ffffff',
 	};
 
-	console.log( nuevoEvento );
+	// añade un evento al calendario y renderiza
+	calendar.addEvent( nuevoEvento );
+	calendar.render();
 
 	// cierra el modal
 	$( '#modalEventos' ).modal( 'toggle' );
