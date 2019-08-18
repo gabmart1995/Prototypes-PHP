@@ -4,54 +4,25 @@ const calendarOptions = {
 	locale: 'es',
 
 	header: {
-		left: 'today,prev,next,', // boton1,boton2',
+		left: 'today,prev,next', // boton1,boton2',
 		center: 'title',
 		right: 'dayGridMonth,dayGridWeek,dayGridDay'
 	},
 
-	/*
 	customButtons: {
 		boton1: botones.mensaje,
 		boton2: botones.accion
 	}, 
-	*/
 
-	eventSources: [{
-		
-		events: [
-			{
-				title: eventos[0].title,
-				start: eventos[0].start,
-				descripcion: eventos[0].descripcion,
-				color: eventos[0].color,
-				textColor: eventos[0].textColor
-			},
-			{
-				title: eventos[1].title,
-				start: eventos[1].start,
-				descripcion: eventos[1].descripcion,
-				end: eventos[1].end
-			},
-			{
-				title: eventos[2].title,
-				start: eventos[2].start,
-				allDay: eventos[2].allDay,
-				descripcion: eventos[2].descripcion,
-				color: eventos[2].color,
-				textColor: eventos[2].textColor
-			}
-		],
-
-		textColor: 'yellow',
-		color: 'black'
-	}],
+	//trae los datos de los archivos de PHP 
+	events: 'http://localhost/php/calendarioWeb/data/events.php',
 
 	eventClick: ( info ) => {
 
 		// console.log( info );
 
 		let tituloEvento = info.event._def.title;
-		let descripcionEvento = info.event._def.extendedProps.descripcion;
+		let descripcionEvento = info.event._def.extendedProps.description;
 
 		// inyeccion de HTML con JQuery.
 		$( '#tituloEvento' ).html( tituloEvento );

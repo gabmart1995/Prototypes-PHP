@@ -5,13 +5,13 @@ const eventos = [
 		start: '2019-08-16',
 		color: 'blue',
 		textColor: '#ffffff',
-		descripcion: 'Celebración del canal'
+		description: 'Celebración del canal de youtube'
 	},
 	{
 		title: 'Evento 2, llegamos a 9000 suscriptores',
 		start: '2019-08-17',
 		end: '2019-08-20',
-		descripcion: 'Desarrollo de calendario'
+		description: 'Desarrollo de calendario'
 	},
 	{
 		title: 'Evento 3',
@@ -19,6 +19,6 @@ const eventos = [
 		allDay: false,
 		color: '#fff000',
 		textColor: '#000000',
-		descripcion: 'Saludos desde Venezuela'
+		description: 'Saludos desde Venezuela'
 	}
 ];
