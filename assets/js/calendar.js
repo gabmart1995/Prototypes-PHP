@@ -1,3 +1,5 @@
+const urlData = 'http://localhost/tutorial-php/calendarioWeb/data/events.php';
+
 const calendarOptions = {
 
 	plugins: [ 'dayGrid', 'interaction', 'moment', 'timeGrid' ],
@@ -15,7 +17,7 @@ const calendarOptions = {
 	}, 
 
 	//trae los datos de los archivos de PHP 
-	events: 'http://localhost/php/calendarioWeb/data/events.php',
+	events: urlData,
 
 	eventClick: ( info ) => {
 
@@ -35,10 +37,8 @@ const calendarOptions = {
 
 		// console.log( info );
 
-		$( '#tituloEvento' ).html( 'Nuevo Evento' );
-		$( '#descripcionEvento' ).html( '...' );
-
-		$( '#calendarModal' ).modal();
+		$( '#txtFecha' ).val( info.dateStr );
+		$( '#modalEventos' ).modal();
 	}
 };
 

@@ -7,7 +7,7 @@
 	try {
 
 		$sql = "SELECT * FROM events";
-		$pdo = new PDO( 'mysql:host=localhost;dbname=calendar', 'test', '123456' );
+		$pdo = new PDO( 'mysql:host=localhost;dbname=calendar', 'test', 't3stL0c?lhost' );
 
 		$sentenceSQL = $pdo -> prepare( $sql );
 		$sentenceSQL -> execute();

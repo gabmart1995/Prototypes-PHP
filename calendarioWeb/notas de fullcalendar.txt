@@ -11,3 +11,6 @@ interaction: es el plugin que crea todas las interacciones del calendario. Prome
 locale: permite establecer el idioma del calendario.
 
 
+Nota de bitacora 1: existe una actualizacion que modifica toda la estructura del calendario
+Revisar la documentacion no agrega eventos al calendario. 
+
