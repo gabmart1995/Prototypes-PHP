@@ -4,7 +4,7 @@
     <div class="modal-content">
       
       <div class="modal-header">
-        <h5 class="modal-title" id="titleEvent"></h5>
+        <h5 class="modal-title" id="eventTitle"></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -16,7 +16,7 @@
           Titulo: <input type="text" name="txtTitle" id="txtTitle"> <br>
           Hora: <input type="text" name="txtHour" id="txtHour"> <br>
           Descripcion <textarea id="txtDescription" rows="3" name="txtDescription"></textarea> <br>
-          Color: <input type="color" name="txtColor" value="#ff0000" id="txtCol">
+          Color: <input type="color" name="txtColor" value="#ff0000" id="txtColor">
       </div>
 
       <div class="modal-footer">
@@ -49,7 +49,7 @@
           Titulo: <input type="text" name="txtTitulo" id="txtTitulo"> <br>
           Hora: <input type="text" name="txtHora" value="10:30" id="txtHora"> <br>
           Descripcion: <textarea id="txtDescripcion" rows="3" name="txtDescripcion"></textarea> <br>
-          Color: <input type="color" name="txtColor" value="#ff0000" id="txtColor">
+          Color: <input type="color" name="txtCol" value="#ff0000" id="txtCol">
       </div>
 
       <div class="modal-footer">

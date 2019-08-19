@@ -20,15 +20,25 @@ const calendarOptions = {
 
 	eventClick: ( info ) => {
 
-		// console.log( info ); 
+		// console.log( info );
 
-		let titleEvent = info.event._def.title;
-		let descriptionEvent = info.event._def.extendedProps.description;
+		let eventStart = info.event._instance.range.start;
 
-		$( '#titleEvent' ).html( titleEvent );
+		let eventDate = calendarFunctions.getDate( eventStart ); 
+		let eventHour = calendarFunctions.getHour( eventStart );
+		let eventTitle = info.event._def.title;
+		let eventId = info.event._def.publicId;
+		let eventDescription = info.event._def.extendedProps.description;
+		let eventTextColor = info.event._def.ui.backgroundColor;
 
-		$( '#txtTitle' ).html( titleEvent );
-		$( '#txtDescription' ).html( descriptionEvent );
+		$( '#eventTitle' ).html( eventTitle );
+
+		$( '#txtId' ).val( eventId );
+		$( '#txtTitle' ).val( eventTitle );
+		$( '#txtDescription' ).val( eventDescription );
+		$( '#txtColor' ).val( eventTextColor );
+		$( '#txtDate' ).val( eventDate );
+		$( '#txtHour' ).val( eventHour );
 
 		$( '#modalEvent' ).modal();
 	},
