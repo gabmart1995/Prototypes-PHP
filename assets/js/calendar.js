@@ -16,30 +16,30 @@ const calendarOptions = {
 		boton2: botones.accion
 	},
 
-	//trae los datos de los archivos de PHP 
-	events: urlData,
+	events: urlData,  // eventos
 
 	eventClick: ( info ) => {
 
 		// console.log( info ); 
 
-		let tituloEvento = info.event._def.title;
-		let descripcionEvento = info.event._def.extendedProps.description;
+		let titleEvent = info.event._def.title;
+		let descriptionEvent = info.event._def.extendedProps.description;
 
-		$( '#titulo' ).html( tituloEvento );
-		$( '#descripcionEvento' ).html( descripcionEvento );
+		$( '#titleEvent' ).html( titleEvent );
 
-		$( '#consultEvent' ).modal();
+		$( '#txtTitle' ).html( titleEvent );
+		$( '#txtDescription' ).html( descriptionEvent );
+
+		$( '#modalEvent' ).modal();
 	},
 
 	dateClick: ( info ) => {
 
 		// console.log( info );
 
-		$( '#tituloEvento' ).html( 'Nuevo Evento' );
 		$( '#txtFecha' ).val( info.dateStr );
 
-		$( '#modalEventos' ).modal();
+		$( '#modalDate' ).modal();
 	}
 };
 

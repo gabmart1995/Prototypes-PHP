@@ -1,0 +1,12 @@
+// registro de comandos SQL
+
+CREATE DATABASE calendar;
+CREATE USER 'test'@'locahost' IDENTIFIED BY 'contraseña';
+GRANT ALL PRIVILEGES ON calendar.* TO 'test'@'localhost';
+
+
+// cambiar contraseña
+
+UPDATE mysql.user SET authentication_string = PASSWORD('nueva contraseña')WHERE User = 'usuario' AND Host = 'localhost';
+FLUSH PRIVILEGES;
+

@@ -8,15 +8,14 @@ $( '#btnAgregar' ).click( () => {
 		title: $( '#txtTitulo' ).val(),
 		start: `${ $( '#txtFecha' ).val() } ${ $( '#txtHora' ).val() }`,
 		color: $( '#txtColor' ).val(),
-		description: $( '#txtDescription' ).val(),
+		description: $( '#txtDescripcion' ).val(),
 		textColor: '#ffffff',
 	};
 
-	// añade un evento al calendario y renderiza
+	// añade un evento al calendario
 	calendar.addEvent( nuevoEvento );
 	calendar.render();
 
-	// cierra el modal
-	$( '#modalEventos' ).modal( 'toggle' );
+	$( '#modalDate' ).modal( 'toggle' );
 
 });
