@@ -84,7 +84,7 @@ const calendarController = {
 	}
 };
 
-// eventos
+// objeto de eventos
 var nuevoEvento = {};
 
 // ----------------------------------------------
