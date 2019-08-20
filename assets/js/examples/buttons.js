@@ -4,14 +4,8 @@ let botones = {
 	mensaje: {
 		text: 'Mensaje',
 		click: () => {
-			alert( 'Hola mundo' );
-		}
-	},
-
-	accion: {
-		text: 'accion',
-		click: () => {
-			alert( 'Accion' );
+			alert( 'Este es un prototipo del calendario personalizado de eventos\n' 
+				+ 'Autor: Gabriel Martínez' );
 		}
 	}
 };

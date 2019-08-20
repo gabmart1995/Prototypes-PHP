@@ -6,14 +6,13 @@ const calendarOptions = {
 	locale: 'es',
 
 	header: {
-		left: 'today,prev,next', // boton1,boton2',
+		left: 'today,prev,next, boton1',
 		center: 'title',
 		right: 'dayGridMonth,dayGridWeek,dayGridDay'
 	},
 
 	customButtons: {
 		boton1: botones.mensaje, 
-		boton2: botones.accion
 	},
 
 	events: urlData,  // eventos
@@ -22,23 +21,8 @@ const calendarOptions = {
 
 		// console.log( info );
 
-		let eventStart = info.event._instance.range.start;
-
-		let eventDate = calendarFunctions.getDate( eventStart ); 
-		let eventHour = calendarFunctions.getHour( eventStart );
-		let eventTitle = info.event._def.title;
-		let eventId = info.event._def.publicId;
-		let eventDescription = info.event._def.extendedProps.description;
-		let eventTextColor = info.event._def.ui.backgroundColor;
-
-		$( '#eventTitle' ).html( eventTitle );
-
-		$( '#txtId' ).val( eventId );
-		$( '#txtTitle' ).val( eventTitle );
-		$( '#txtDescription' ).val( eventDescription );
-		$( '#txtColor' ).val( eventTextColor );
-		$( '#txtDate' ).val( eventDate );
-		$( '#txtHour' ).val( eventHour );
+		calendarController.validateButtons( 'eventClick' );		
+		calendarController.getData( info );
 
 		$( '#modalEvent' ).modal();
 	},
@@ -47,9 +31,12 @@ const calendarOptions = {
 
 		// console.log( info );
 
-		$( '#txtFecha' ).val( info.dateStr );
+		calendarController.validateButtons( 'dateClick' );
+		calendarController.getEmpty();
 
-		$( '#modalDate' ).modal();
+		$( '#txtDate' ).val( info.dateStr );
+
+		$( '#modalEvent' ).modal();
 	}
 };
 

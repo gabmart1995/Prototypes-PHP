@@ -32,6 +32,6 @@
 		<script src="./../assets/js/examples/buttons.js"></script>
 		<script src="./../assets/js/examples/events.js"></script>
 		<script src="./../assets/js/calendar.js"></script>
-		<script src="./../assets/js/calendarFunctions.js"></script>
+		<script src="./../assets/js/calendarController.js"></script>
 	</body>
 </html>
