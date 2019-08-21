@@ -1,7 +1,7 @@
 <?php 
 
 	/* 
-		MODO DE RECEPCION y ASIGNACIÓN DE DATOS PHP 
+		RECEPCION DE DATOS PHP 
 		Ejemplo de Salida de formato JSON:
 
 		'id' => '1'
@@ -17,7 +17,7 @@
 
 	$accion = ( isset( $_GET['accion'] )) ? $_GET['accion'] : 'leer';
 
-	// Conexion por PDO https://www.php.net/manual/es
+	// Conexion por PDO: https://www.php.net/manual/es/book.pdo.php
 	$pdo = new PDO( 'mysql:host=localhost;dbname=calendar', 'test', 't3stL0c?lhost' );
 
 	switch ( $accion ) {
@@ -25,7 +25,7 @@
 		case 'agregar':
 			
 			$sql = "INSERT INTO events( title, description, color, textColor, start, end ) ";
-			$sql .= "VALUES( :title, :description, :color, :textColor, :start, :end  )";
+			$sql .= "VALUES( :title, :description, :color, :textColor, :start, :end  );";
 
 			$sentenceSQL = $pdo -> prepare( $sql );
 			
@@ -41,27 +41,35 @@
 
 			echo json_encode( $result ); // true or false
 
-			break;
-
-		case 'eliminar':
-			
-			// instruccion eliminar
-			echo "instruccion eliminar";
-
-			break;
+		break;
 
 		case 'modificar':
 			
 			// instruccion modificar
 			echo "instruccion modificar";
 
-			break;
+		break;
+
+		case 'eliminar': 
+
+			$sql = "DELETE FROM events WHERE id=:ID;";
+			$result = false;
+
+			if ( isset( $_POST['id'] ) ) {
+
+				$sentenceSQL = $pdo -> prepare( $sql );
+				$result = $sentenceSQL -> execute( array( 'ID' => $_POST['id'] ) );
+			}
+
+			echo json_encode( $result );
+
+		break;
 		
 		default:
 				
 			try {
 				// consulta BD.
-				$sql = "SELECT * FROM events";
+				$sql = "SELECT * FROM events;";
 					
 				$sentenceSQL = $pdo -> prepare( $sql );
 				$sentenceSQL -> execute();
@@ -77,7 +85,7 @@
     			die();
 			}
 
-			break;
+		break;
 	}
 
 ?>

@@ -1,3 +1,5 @@
+var nuevoEvento = {};
+
 // ----------------------------------------------
 // 		calendarController
 // ----------------------------------------------
@@ -69,11 +71,11 @@ const calendarController = {
 		return newHour[4];
 	},
 
-	recolectarDatosGUI: () => {
+	getDataForm: () => {
 
 		nuevoEvento = {
 
-			id: $( '#txtId' ).val(),
+			id:  parseInt( $( '#txtId' ).val() ),
 			title: $( '#txtTitle' ).val(),
 			start: `${ $( '#txtDate' ).val() } ${ $( '#txtHour' ).val() }`,
 			color: $( '#txtColor' ).val(),
@@ -81,23 +83,53 @@ const calendarController = {
 			textColor: '#ffffff',
 			end: `${ $( '#txtDate' ).val() } ${ $( '#txtHour' ).val() }`, 
 		};
+	},
+
+	sendDataDB: ( accion, event ) => {
+
+		// consulta informacion sobre Ajax en:
+		// https://api.jquery.com/jQuery.Ajax/#jQuery-ajax-url-settings
+
+		$.ajax({
+			
+			type: 'POST',
+			url: `./data/events.php?accion=${ accion }`,
+			data: event,
+
+			success: ( msg ) => {
+
+				if ( msg ) {
+
+					calendar.refetchEvents();
+					$( '#modalEvent' ).modal( 'toggle' );
+				}
+			},
+
+			error: () => {
+
+				alert('Hay un error ...');
+			} 
+		});
 	}
 };
 
-// objeto de eventos
-var nuevoEvento = {};
+// 	Metodos de fullcalendar
+// 	https://fullcalendar.io/docs/upgrading-from-v3
 
 // ----------------------------------------------
 // 		Agrega un nuevo evento
 // ----------------------------------------------
 $( '#btnAdd' ).click( () => {
 
-	calendarController.recolectarDatosGUI();
+	calendarController.getDataForm();
+	calendarController.sendDataDB( 'agregar', nuevoEvento );
+});
 
-	// añade un evento al calendario
-	calendar.addEvent( nuevoEvento );
-	calendar.render();
+// ----------------------------------------------
+// 		Eliminar un evento
+// ----------------------------------------------
+$( '#btnClear' ).click( () => {
 
-	$( '#modalEvent' ).modal( 'toggle' );
-
+	calendarController.getDataForm();
+	calendarController.sendDataDB( 'eliminar', nuevoEvento );
 });
