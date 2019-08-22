@@ -7,6 +7,7 @@
 		<link rel="stylesheet" href="./../assets/vendor/daygrid/main.css">
 		<link rel="stylesheet" href="./../assets/css/calendar.css">
 		<link rel="stylesheet" href="./../assets/vendor/bootstrap/bootstrap.css">
+		<link rel="stylesheet" href="./../assets/vendor/bootstrap/bootstrap-clockpicker.css">
 		<script src="./../assets/vendor/core/main.js"></script>
 		<script src="./../assets/vendor/interaction/main.js"></script>
 		<script src="./../assets/vendor/moment/main.js"></script>
@@ -20,7 +21,6 @@
 		<!-- =============================== -->
 		<!-- 		PHP 					 -->
 		<!-- =============================== -->
-		
 		<?php include './components/calendar.php';  ?>
 		<?php  include './components/modal.php'  ?>
 
@@ -29,6 +29,7 @@
 		<!-- =============================== -->
 		<script src="./../assets/vendor/jquery/jquery-3.4.1.min.js"></script>
 		<script src="./../assets/vendor/bootstrap/bootstrap.js"></script>
+		<script src="./../assets/vendor/bootstrap/bootstrap-clockpicker.js"></script>
 		<script src="./../assets/js/examples/buttons.js"></script>
 		<script src="./../assets/js/examples/events.js"></script>
 		<script src="./../assets/js/calendar.js"></script>

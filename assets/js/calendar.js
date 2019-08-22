@@ -20,7 +20,7 @@ const calendarOptions = {
 		// console.log( info );
 
 		calendarController.validateButtons( 'eventClick' );		
-		calendarController.getData( info );
+		calendarController.getDataJSON( info );
 
 		$( '#modalEvent' ).modal();
 	},
@@ -38,9 +38,29 @@ const calendarOptions = {
 	},
 
 	events: urlData,  // eventos
+
+	editable: true,
+
+	eventDrop: ( info ) => {
+
+		// console.log( info );
+
+		calendarController.getDataJSON( info );
+		calendarController.getDataForm();
+		calendarController.sendDataDB( 'modificar', nuevoEvento, false );
+	}
+};
+
+const optionsClockPicker = {
+
+	placement: 'right',
+	align: 'left',
+	autoclose: true
 };
 
 let calendarEl = document.getElementById( 'calendar' );
+
+
 
 const calendar = new FullCalendar.Calendar( calendarEl, calendarOptions );
 
@@ -48,3 +68,8 @@ $( document ).ready( () => {
 
 	calendar.render();
 });
+
+// ----------------------------------------------
+// 		Boostrap ClockPicker
+// ----------------------------------------------
+$( '.clockpicker' ).clockpicker( optionsClockPicker );

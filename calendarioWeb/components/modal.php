@@ -11,12 +11,40 @@
       </div>
 
       <div class="modal-body">
-          ID: <input type="text" name="txtId" id="txtId"> <br>
-          Fecha: <input type="text" name="txtDate" id="txtDate"> <br>
-          Titulo: <input type="text" name="txtTitle" id="txtTitle"> <br>
-          Hora: <input type="text" name="txtHour" id="txtHour"> <br>
-          Descripcion <textarea id="txtDescription" rows="3" name="txtDescription"></textarea> <br>
-          Color: <input type="color" name="txtColor" value="#ff0000" id="txtColor">
+          
+          <!-- Campos ocultos -->  
+          <input type="hidden" name="txtId" id="txtId">
+          <input type="hidden" name="txtDate" id="txtDate">
+        
+          <div class="form-row">
+
+            <div class="form-group col-md-8">
+              <label>  Titulo: </label>
+              <input type="text" name="txtTitle" id="txtTitle" class="form-control"
+              placeholder="Titulo del evento">    
+            </div>
+            
+            <div class="form-group col-md-4">
+              <label> Hora: </label>
+
+              <div class="input-group clockpicker">
+                <input type="text" name="txtHour" id="txtHour" class="form-control">
+              </div>
+            </div>
+
+            <div class="form-group col-md-12">
+              <label> Descripcion: </label>
+              <textarea id="txtDescription" rows="3" name="txtDescription"
+                 class="form-control" placeholder="descripcion del evento"></textarea> 
+            </div>
+
+            <div class="form-group col-md-12">
+              <label> Color:  </label>
+              <input type="color" name="txtColor" value="#ff0000" id="txtColor" class="form-control" style="height: 36px;">
+            </div>
+
+          </div>
+
       </div>
 
       <div class="modal-footer">

@@ -5,7 +5,7 @@ var nuevoEvento = {};
 // ----------------------------------------------
 const calendarController = {
 
-	getData: function( info ) {
+	getDataJSON: function( info ) {
 
 		let eventStart = info.event._instance.range.start;
 
@@ -42,16 +42,16 @@ const calendarController = {
 
 		if ( evento === 'eventClick' ) {
 
-			document.getElementById( 'btnAdd' ).disabled = true;
-			document.getElementById( 'btnModify' ).disabled = false;
-			document.getElementById( 'btnClear' ).disabled = false;
+			$( '#btnAdd' ).prop( 'hidden', true );
+			$( '#btnModify' ).prop( 'hidden', false );
+			$( '#btnClear' ).prop( 'hidden', false );
 		}
 
 		else {
-			
-			document.getElementById( 'btnAdd' ).disabled = false;
-			document.getElementById( 'btnModify' ).disabled = true;
-			document.getElementById( 'btnClear' ).disabled = true;
+				
+			$( '#btnAdd' ).prop( 'hidden', false );
+			$( '#btnModify' ).prop( 'hidden', true );
+			$( '#btnClear' ).prop( 'hidden', true );
 		}
 	},
 
@@ -83,11 +83,9 @@ const calendarController = {
 			textColor: '#ffffff',
 			end: `${ $( '#txtDate' ).val() } ${ $( '#txtHour' ).val() }`, 
 		};
-
-		return nuevoEvento
 	},
 
-	sendDataDB: ( accion, event ) => {
+	sendDataDB: ( accion, event , modal ) => {
 
 		// consulta informacion sobre Ajax en:
 		// https://api.jquery.com/jQuery.Ajax/#jQuery-ajax-url-settings
@@ -103,7 +101,11 @@ const calendarController = {
 				if ( msg ) {
 
 					calendar.refetchEvents();
-					$( '#modalEvent' ).modal( 'toggle' );
+
+					if ( modal ) {
+
+						$( '#modalEvent' ).modal( 'toggle' );
+					}
 				}
 			},
 
@@ -124,7 +126,7 @@ const calendarController = {
 $( '#btnAdd' ).click( () => {
 
 	calendarController.getDataForm();
-	calendarController.sendDataDB( 'agregar', nuevoEvento );
+	calendarController.sendDataDB( 'agregar', nuevoEvento, true );
 });
 
 // ----------------------------------------------
@@ -133,7 +135,7 @@ $( '#btnAdd' ).click( () => {
 $( '#btnClear' ).click( () => {
 
 	calendarController.getDataForm();
-	calendarController.sendDataDB( 'eliminar', nuevoEvento );
+	calendarController.sendDataDB( 'eliminar', nuevoEvento, true );
 });
 
 // ----------------------------------------------
@@ -142,5 +144,5 @@ $( '#btnClear' ).click( () => {
 $( '#btnModify' ).click( () => {
 
 	calendarController.getDataForm();
-	calendarController.sendDataDB( 'modificar', nuevoEvento );
+	calendarController.sendDataDB( 'modificar', nuevoEvento, true );
 });

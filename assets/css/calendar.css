@@ -8,3 +8,10 @@ body {
     max-width: 900px;
     margin: 0 auto;
 }
+
+.fc th {
+	padding:  10px 0px;
+	vertical-align: middle;
+	background: #f2f2f2;
+	text-transform: capitalize;
+}
