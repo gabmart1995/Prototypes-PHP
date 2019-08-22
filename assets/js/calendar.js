@@ -15,8 +15,6 @@ const calendarOptions = {
 		boton1: botones.mensaje, 
 	},
 
-	events: urlData,  // eventos
-
 	eventClick: ( info ) => {
 
 		// console.log( info );
@@ -37,7 +35,9 @@ const calendarOptions = {
 		$( '#txtDate' ).val( info.dateStr );
 
 		$( '#modalEvent' ).modal();
-	}
+	},
+
+	events: urlData,  // eventos
 };
 
 let calendarEl = document.getElementById( 'calendar' );

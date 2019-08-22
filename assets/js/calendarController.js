@@ -83,6 +83,8 @@ const calendarController = {
 			textColor: '#ffffff',
 			end: `${ $( '#txtDate' ).val() } ${ $( '#txtHour' ).val() }`, 
 		};
+
+		return nuevoEvento
 	},
 
 	sendDataDB: ( accion, event ) => {
@@ -132,4 +134,13 @@ $( '#btnClear' ).click( () => {
 
 	calendarController.getDataForm();
 	calendarController.sendDataDB( 'eliminar', nuevoEvento );
+});
+
+// ----------------------------------------------
+// 		Actualizar un evento
+// ----------------------------------------------
+$( '#btnModify' ).click( () => {
+
+	calendarController.getDataForm();
+	calendarController.sendDataDB( 'modificar', nuevoEvento );
 });
