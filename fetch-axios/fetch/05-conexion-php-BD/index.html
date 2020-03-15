@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+		<link rel="stylesheet" href="./index.css">
+		<title>fetch API, Conexion con PHP-BD</title>
+	</head>
+	<body>
+
+		<h2>Formulario de Invitados con FetchAPI</h2>
+
+		<form id="formulario">
+			<div>
+				<label for="nombre">Nombre:</label>
+				<input id="nombre" type="text" name="name" 
+					placeholder="ingresa nombre ..." required/>
+			</div>
+			<div>
+				<label for="apellido">Apellido:</label>
+				<input required type="text" name="lastname" id="apellido"
+					placeholder="ingresa apellido ..." />
+			</div>
+			<div>
+				<label for="email">Correo:</label>
+				<input 
+					id="email" type="email" name="email" 
+					placeholder="ingresa correo ..." required 
+				/>
+			</div>
+			<button type="submit">Enviar</button>
+		</form>
+
+		<div id="respuesta"></div>
+
+		<script type="text/javascript" src="./app.js"></script>
+	</body>
+</html> 

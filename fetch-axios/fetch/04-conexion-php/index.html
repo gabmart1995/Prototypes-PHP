@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+		<link rel="stylesheet" href="./index.css">
+		<title>fetch API, Conexion con PHP</title>
+	</head>
+	<body>
+
+		<h2>Formulario con fetch API</h2>
+
+		<form id="formulario">
+			<div>
+				<label for="user">Usuario:</label>
+				<input id="user" type="text" name="usuario" placeholder="ingresa usuario ..." />
+			</div>
+			<div>
+				<label for="pass">Contraseña:</label>
+				<input 
+					id="pass" type="password" name="password" 
+					placeholder="ingresa contraseña ..." 
+				/>
+			</div>
+			<button type="submit">Enviar</button>
+		</form>
+
+		<div id="respuesta"></div>
+
+		<script type="text/javascript" src="./app.js"></script>
+	</body>
+</html> 

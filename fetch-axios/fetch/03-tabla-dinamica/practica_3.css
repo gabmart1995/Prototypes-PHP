@@ -1,0 +1,27 @@
+.table-users {
+	display: flex;
+	justify-content: center;
+	flex-direction: row;
+}
+
+.table-users > table {
+	text-align: center;
+}
+
+thead > tr {
+	background-color: black;
+	color: white;
+}
+
+th {
+	padding: 10px;	
+	margin: 0;
+}
+
+td {
+	padding: 5px;
+}
+
+.gray {
+	background-color: lightgray;
+}

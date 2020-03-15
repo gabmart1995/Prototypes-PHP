@@ -1,0 +1,13 @@
+.success {
+	background-color: lightgreen;
+	margin: 5vh;
+	padding: 50px;
+	border-radius: 5px;
+}
+
+.error {
+	background-color: pink;
+	margin: 5vh;
+	padding: 25px;
+	border-radius: 5px;
+}
