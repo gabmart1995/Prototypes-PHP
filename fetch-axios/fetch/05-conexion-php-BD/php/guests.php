@@ -1,6 +1,6 @@
 <?php 
 	
-	include './conexion.php';
+	require('./conexion.php');
 	
 	class Guest {
 
@@ -8,7 +8,7 @@
 		public $lastname = '';
 		public $email = '';
 		public $regDate = '';
-		// private $DB = new Conexion();
+		private $db;
 
 		public function __construct( $name, $lastname, $email ) {
 
@@ -16,19 +16,30 @@
 			$this->lastname = $lastname;
 			$this->email = $email;
 			$this->regDate = date('Y-m-d');
+			$this->db = new Conexion();
 		}
 
 		public function testData() {
 
-			// array JSON
-			$arrayJSON = array(
-				'name' => $this->name, 
+			return json_encode( $this->getJSON() );
+		}
+
+		public function createGuest() {
+
+			return json_encode( $this->db->insertData( $this->getJSON() ) );
+
+		}
+
+		private function getJSON() {
+			
+			$guest = array(
+				'name' => $this->name,
 				'lastname' => $this->lastname,
 				'email' => $this->email,
-				'regDate' => $this->regDate
+				'reg_date' => $this->regDate 
 			);
 
-			return json_encode( $arrayJSON );
+			return $guest;
 		}
 	}
 

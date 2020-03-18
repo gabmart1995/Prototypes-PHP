@@ -1,13 +1,12 @@
 <?php 
 
-	include './guests.php';
+	require('./guests.php');
 	
 	$name = $_POST['name'];
 	$lastname = $_POST['lastname'];
 	$email = $_POST['email'];
 
-	$GUEST = new Guest( $name, $lastname, $email );
-
-	echo $GUEST->testData();
+	$guest = new Guest( $name, $lastname, $email );
+	echo $guest->createGuest();
 
 ?>

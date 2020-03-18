@@ -7,7 +7,7 @@
 		private $password = '123456';
 		private $conn = null;
 
-		public function connectDataBase() {
+		public function connectDatabase() {
 
 			$this->conn = mysqli_connect(
 				$this->serverName,
@@ -20,7 +20,9 @@
 			}
 
 			echo 'conexion exitosa';
-			
+
+			//  selecciona la bd
+			mysqli_select_db( $this->conn, 'myDB' ) or die('No se encunetra la BD.');
 		}
 
 		public function closeConnection() {
@@ -46,7 +48,7 @@
 
 			$sql = "
 
-				CREATE TABLE myDB.MyGuests(
+				CREATE TABLE MyGuests(
 					id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 					firstname VARCHAR(30) NOT NULL,
 					lastname VARCHAR(30) NOT NULL,
@@ -66,21 +68,38 @@
 			}
 		}
 
-		public function insertData( $data ) {
+		public function insertData( $guest ) {
 
-			$sql = "
-				INSERT INTO MyDB.MyGuests( firstname, lastname, email, reg_date )
+			return $guest;
+
+			/*$sql = "
+				INSERT INTO MyGuests( firstname, lastname, email, reg_date )
 					VALUES( ?, ?, ?, ? );
 				";
 
-			if ( $this->conn->query( $sql ) ) {
+			$result = mysqli_prepare( $this->conn, $sql );
+			
+			$ok = mysqli_stmt_bind_param( 
+				$result, 
+				'ssss', 
+				$guest->firstname, 
+				$guest->lastname,
+				$guest->email,
+				$guest->reg_date
+			);
 
-				return 'Registro creado';
+			$ok = mysqli_stmt_execute( $result );
+
+			if ( $ok ) {
+				
+				echo json_encode('registro creado');
+				
+				mysqli_stmt_close( $result );
 			
 			} else {
 
-				return 'Error en crear registro ' .$sql->error; 
-			}
+				echo json_encode('error en crear registro'); 
+			}*/
 		}
 
 	}
