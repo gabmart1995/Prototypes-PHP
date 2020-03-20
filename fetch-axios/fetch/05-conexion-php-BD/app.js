@@ -20,7 +20,7 @@ function sendData( form ) {
 
 		.then( async function( response ) {
 			
-			const data = await response.json();
+			const data = await response.text();
 			console.log( data );
 		})
 		.catch( function( error ) {

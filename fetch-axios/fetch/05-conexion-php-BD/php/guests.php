@@ -1,22 +1,22 @@
 <?php 
 	
-	require('./conexion.php');
-	
+	require('./database.php');
+
 	class Guest {
 
-		public $name = '';
+		public $firstname = '';
 		public $lastname = '';
 		public $email = '';
 		public $regDate = '';
-		private $db;
+		private $database = null;
 
-		public function __construct( $name, $lastname, $email ) {
+		public function __construct( $firstname, $lastname, $email ) {
 
-			$this->name = $name;
+			$this->firstname = $firstname;
 			$this->lastname = $lastname;
 			$this->email = $email;
 			$this->regDate = date('Y-m-d');
-			$this->db = new Conexion();
+			$this->database = new Database();
 		}
 
 		public function testData() {
@@ -24,22 +24,38 @@
 			return json_encode( $this->getJSON() );
 		}
 
-		public function createGuest() {
-
-			return json_encode( $this->db->insertData( $this->getJSON() ) );
-
-		}
-
 		private function getJSON() {
-			
+
 			$guest = array(
-				'name' => $this->name,
+				'id' => 1,
+				'firstname' => $this->firstname,
 				'lastname' => $this->lastname,
 				'email' => $this->email,
-				'reg_date' => $this->regDate 
+				'reg_date' => $this->regDate
 			);
 
-			return $guest;
+			$message = array(
+				'status' => 200,
+				'ok' => true,
+				'guest' => $guest
+			);
+
+			return $message;
+		}
+
+		public function save() {
+
+			$sql = "INSERT INTO firstname, lastname, email, reg_date VALUES ( ?, ?, ?, ? )";
+			
+			$guest = array(
+				'firstname' => $this->firstname,
+				'lastname' => $this->lastname,
+				'email' => $this->email,
+				'reg_date' => $this->regDate
+			);
+
+			$result = $this->database->insert( $sql, $guest );
+			return json_encode( $result );
 		}
 	}
 
