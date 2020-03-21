@@ -19,30 +19,6 @@
 			$this->database = new Database();
 		}
 
-		public function testData() {
-
-			return json_encode( $this->getJSON() );
-		}
-
-		private function getJSON() {
-
-			$guest = array(
-				'id' => 1,
-				'firstname' => $this->firstname,
-				'lastname' => $this->lastname,
-				'email' => $this->email,
-				'reg_date' => $this->regDate
-			);
-
-			$message = array(
-				'status' => 200,
-				'ok' => true,
-				'guest' => $guest
-			);
-
-			return $message;
-		}
-
 		public function save() {
 
 			$sql = "INSERT INTO MyGuests ( firstname, lastname, email, reg_date ) VALUES ( ?, ?, ?, ? )";
