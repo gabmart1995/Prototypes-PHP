@@ -45,7 +45,7 @@
 
 		public function save() {
 
-			$sql = "INSERT INTO firstname, lastname, email, reg_date VALUES ( ?, ?, ?, ? )";
+			$sql = "INSERT INTO MyGuests ( firstname, lastname, email, reg_date ) VALUES ( ?, ?, ?, ? )";
 			
 			$guest = array(
 				'firstname' => $this->firstname,

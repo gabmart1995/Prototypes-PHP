@@ -21,7 +21,7 @@
 				echo 'Error' .$this->mysqli->connect_error;
 			}
 
-			echo "conexion exitosa";
+			$this->mysqli->select_db('myDB');
 		}
 
 		public function close() {
@@ -30,51 +30,50 @@
 				$this->mysqli->close();
 				$this->mysqli = null;
 			}
-
-			echo "conexion cerrada";
 		}
 
-		public function insert( $sql, $data ) {
+		public function insert( $sql, $guest ) {
 			
 			$message = null;
-			$stmt = null;
 
 			$this->connect();
 			
+			// mysql object			
 			if ( $stmt = $this->mysqli->prepare( $sql ) ) {
 
 					$stmt->bind_param(
 						'ssss', 
-						$data['firstname'], 
-						$data['lastname'],
-						$data['email'],
-						$data['reg_date']
+						$guest['firstname'], 
+						$guest['lastname'],
+						$guest['email'],
+						$guest['reg_date']
 					);
 
 					$stmt->execute();
 				
-				} else {
-
-					$this->close();
-					
-					$message = $this->showJSON( 500, false, 'error al crear stmt' );
-					
-					return $message;
-				}
-
-				$message =  $this->showJSON( 200, true, $data );
+			} else {
 
 				$this->close();
-
+				
+				$message = $this->showJSON( 500, false, 'error en la consulta SQL' );
+				
 				return $message;
+			}
+
+			$message =  $this->showJSON( 201, true, $guest );
+
+			$stmt->close();
+			$this->close();
+
+			return $message;
 		}
 
-		private function showJSON( $status, $ok, $message ) {
+		private function showJSON( $status, $ok, $payload ) {
 
 			return array(
 				'status' => $status,
 				'ok' => $ok,
-				'message' => $message
+				'payload' => $payload
 			);
 		}
 	}
