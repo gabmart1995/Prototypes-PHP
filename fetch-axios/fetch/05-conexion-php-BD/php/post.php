@@ -22,7 +22,12 @@
 			break;
 		
 		default:
-			# code...
+				
+				// echo 'paso por leer';
+
+				$guest = new Guest('', '', '');
+				echo $guest->consultAllGuests();
+
 			break;
 	};
 

@@ -3,12 +3,13 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-		<link rel="stylesheet" href="./index.css">
 		<title>fetch API, Conexion con PHP-BD</title>
 	</head>
 	<body>
 
 		<h2>Formulario de Invitados con FetchAPI</h2>
+
+		<h3>1.- Inserta datos de invitados</h3>
 
 		<form id="formulario">
 			<div>
@@ -29,9 +30,35 @@
 				/>
 			</div>
 			<button type="submit">Enviar</button>
+			<button type="reset">Cancelar</button>
 		</form>
 
-		<div id="respuesta"></div>
+		<div id="respuesta-insert"></div>
+
+		<hr>
+
+		<h3>2.- Consultar datos todos los invitados</h3>
+
+		<button onclick="consultAllGuest()">
+			Consultar
+		</button>
+
+		<table>
+			<thead>
+				<tr>
+					<th>Id:</th>
+					<th>Nombre:</th>
+					<th>Apellido:</th>
+					<th>Correo:</th>
+					<th>Fecha de registro:</th>
+				</tr>
+			</thead>
+			<tbody id="table"></tbody>
+		</table>
+
+		<p id="message" hidden>No se encontraron resultados</p>
+
+		<p>La tabla crecerá cuantos datos le coloques desde el formulario</p>
 
 		<script type="text/javascript" src="./app.js"></script>
 	</body>

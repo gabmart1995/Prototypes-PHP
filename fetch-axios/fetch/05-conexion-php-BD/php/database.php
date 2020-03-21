@@ -68,6 +68,66 @@
 			return $message;
 		}
 
+		public function consultAll( $sql ) {
+
+			$this->connect();
+			$arrayConsult = [];
+
+			if ( $stmt = $this->mysqli->prepare( $sql ) ) {
+
+				$result = $stmt->execute();
+
+				if ( $result ) {
+
+					$result = $stmt->bind_result(
+						$id, 
+						$firstname,
+						$lastname,
+						$email,
+						$reg_date
+					);
+
+					while ( $stmt->fetch() ) {
+
+						$guest = array(
+							'id' => $id, 
+							'firstname' => $firstname,
+							'lastname' => $lastname,
+							'email' => $email,
+							'reg_date' => $reg_date
+						);
+
+						array_push( $arrayConsult, $guest );
+
+					}
+
+					$stmt->close();
+					$this->close();
+
+					$message = $this->showJSON( 200, true, $arrayConsult );
+
+					return $message;
+
+				} else {
+
+					$stmt->close();
+					$this->close();
+
+					$message = $this->showJSON( 500, false, 'error en la consulta' );
+
+					return $message;
+				}
+
+			} else {
+
+				$this->close();
+
+				$message = $this->showJSON( 500, false, 'error en stmt' );
+
+				return $message;
+			}
+		}
+
 		private function showJSON( $status, $ok, $payload ) {
 
 			return array(
@@ -77,5 +137,8 @@
 			);
 		}
 	}
+
+	$db = new Database();
+	$db->consultAll( 'SELECT * FROM MyGuests' );
 
 ?>

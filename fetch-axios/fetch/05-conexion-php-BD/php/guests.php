@@ -33,6 +33,16 @@
 			$result = $this->database->insert( $sql, $guest );
 			return json_encode( $result );
 		}
+
+		public function consultAllGuests() {
+
+			// echo 'paso all guests';
+
+			$sql = 'SELECT * FROM MyGuests';
+
+			$result = $this->database->consultAll( $sql );
+			return json_encode( $result );
+		}
 	}
 
 ?>
