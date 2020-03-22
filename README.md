@@ -1,11 +1,13 @@
-
+ 
 # REPOSITORIO DE CONSULTA DE PHP
 
-## Autor: gabmart1995
+## Autor: gabmart1995 Derechos reservados
 
-Este es un pequeño repositorio de prototipos de php destinado para consulta.
+Este es un repositorio de prueba para prototipos de PHP destinado 
+para consulta y experimentación.
 
-### Calendario de Eventos:
+### Calendario de hitos:
 
-- 22-08-19: Creacion de un prototipo de calendario con FullCalendar version actualizada.
-- 15-03-20: Diseño de una api de invitados con fetch
+- 22-08-19: Creación de calendario de eventos con FullCalendar.
+- 15-03-20: Diseño de un servicio de api-rest de invitados con fetch.
+
