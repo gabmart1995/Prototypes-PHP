@@ -1,9 +1,11 @@
 const formulario = document.getElementById('formulario');
-const insert = document.getElementById('respuesta-insert');
 const table = document.getElementById('table');
 const formEdit = document.getElementById('editForm');
 
-formulario.addEventListener('submit', function( $event ) {
+formEdit.addEventListener('submit', editGuest );
+formulario.addEventListener('submit', insertGuest );
+
+function insertGuest( $event ) {
 
 	$event.preventDefault();
 
@@ -15,15 +17,12 @@ formulario.addEventListener('submit', function( $event ) {
 		email: form.get('email'),
 	}
 
-	const request = new Request( './php/post.php?method=agregar',  {
-		method: 'POST',
-		body: JSON.stringify( guest )
+	const request = new Request( 
+		'./php/post.php?method=agregar',  
+		{
+			method: 'POST',
+			body: JSON.stringify( guest )
 	});
-
-	sendData( request );
-});
-
-function sendData( request ) {
 
 	fetch( request )
 		.then( async function( response ) {
@@ -38,12 +37,104 @@ function sendData( request ) {
 
 				console.log( data );
 				
-				showMessage( 'El usuario ha sido creado con éxito', 'w3-text-green' );
+				showMessage( 
+					'El usuario ha sido creado con éxito consulta la tabla', 
+					'w3-text-green',
+					document.getElementById('insert') 
+				);
 			}
 
 		})
 		.catch( function( error ) {
 			console.log( error );
+		});
+}
+
+function editGuest( $event ) {
+
+	$event.preventDefault();
+
+	const form = new FormData( formEdit );
+
+	const guest = {
+		firstname: form.get('firstname'),
+		lastname: form.get('lastname'),
+		email: form.get('email')
+	};
+
+	const request = new Request(
+		`./php/post.php?method=modificar&id=${ form.get('id') }`, 
+		{
+			method: 'PUT',
+			body: JSON.stringify( guest )
+	});
+
+	fetch( request )
+		.then( async function( response ) {
+		
+			const data = await response.json();
+		
+				if ( data.status === 500 ) {
+					console.error( data );
+				} 
+
+				else {
+					console.log( data );
+
+					showMessage( 
+					'El usuario ha sido cambiado con éxito vuelve a consultar la tabla', 
+					'w3-text-green',
+					document.getElementById('edit') 
+				);
+				}
+
+			console.log( data );
+			closeModal('editModal');
+		})
+		.catch( function( error ) {
+
+			closeModal('editModal');
+			console.log( error );
+		});
+}
+
+
+function deleteGuest() {
+
+	let id = document.getElementById('modal-title');
+	id = id.innerText.split(' ');
+	id = id[2];
+
+	const request = new Request(
+		`./php/post.php?method=eliminar&id=${ id }`,
+		{ method: 'DELETE' }
+	);
+
+	fetch( request )
+	.then( async function( response ) {
+		
+		const data = await response.json();
+
+		if ( data.status === 500 ) {
+			console.error( data );
+		
+		} else {
+
+			console.log( data );
+
+			showMessage( 
+				'El usuario ha sido eliminado con éxito vuelve a consultar la tabla', 
+				'w3-text-green',
+				document.getElementById('delete') 
+			);
+		}
+
+		closeModal('deleteModal');
+
+	})
+	.catch( function( error ) {
+			console.log( error );
+			closeModal('deleteModal');
 		});
 }
 
@@ -74,11 +165,9 @@ function consultAllGuest() {
 		});
 }
 
-function showMessage( message, className ) {
+function showMessage( message, className, elementHTML ) {
 
-	insert.innerHTML = `
-		<p class=${ className }>${ message }</p>
-	`
+	elementHTML.innerHTML = `<p class=${ className }>${ message }</p>`;
 }
 
 function showTable( guestArray ) {
@@ -93,13 +182,13 @@ function showTable( guestArray ) {
 
 			table.innerHTML += `
 				<tr>
-					<td>${ guest.id }</td>
-					<td>${ guest.firstname }</td>
-					<td>${ guest.lastname }</td>
-					<td>${ guest.email }</td>
-					<td>${ guest.reg_date }</td>
-					<td>
-						<button onclick="editGuest(
+					<td class="w3-center">${ guest.id }</td>
+					<td class="w3-center">${ guest.firstname }</td>
+					<td class="w3-center">${ guest.lastname }</td>
+					<td class="w3-center">${ guest.email }</td>
+					<td class="w3-center">${ guest.reg_date }</td>
+					<td class="w3-center">
+						<button onclick="showEditGuest(
 								{ 
 									id: ${ guest.id }, 
 									firstname: '${ guest.firstname }',
@@ -109,11 +198,10 @@ function showTable( guestArray ) {
 								})" class="w3-btn w3-blue">
 							Editar
 						</button>
-						<button onclick="deleteGuest( ${ guest.id } )" class="w3-btn w3-red">
+						<button onclick="showDeleteGuest( ${ guest.id } )" class="w3-btn w3-red">
 							Eliminar
 						</button>
 					</td>
-					<td></td>
 				</tr>
 			`;
 		});
@@ -127,16 +215,17 @@ function showTable( guestArray ) {
 
 }
 
-function editGuest( guest ) {
+function showEditGuest( guest ) {
 
-	formEdit[0].value = guest.firstname;
-	formEdit[1].value = guest.lastname;
-	formEdit[2].value = guest.email;
+	formEdit[0].value = guest.id;
+	formEdit[1].value = guest.firstname;
+	formEdit[2].value = guest.lastname;
+	formEdit[3].value = guest.email;
 
 	document.getElementById('editModal').style.display = 'block';	
 }
 
-function deleteGuest( id ) {
+function showDeleteGuest( id ) {
 	
 	const title = document.getElementById('modal-title');
 	title.innerText = 'Eliminar usuario ' + id;
@@ -145,5 +234,6 @@ function deleteGuest( id ) {
 }
 
 function closeModal( idElement ) {
+
 	document.getElementById( idElement ).style.display = 'none';
 }

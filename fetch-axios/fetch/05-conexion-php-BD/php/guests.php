@@ -36,11 +36,32 @@
 
 		public function consultAllGuests() {
 
-			// echo 'paso all guests';
-
 			$sql = 'SELECT * FROM MyGuests';
 
 			$result = $this->database->consultAll( $sql );
+			return json_encode( $result );
+		}
+
+		public function editGuest( $id ) {
+
+			$sql = "UPDATE MyGuests SET firstname=?, lastname=?, email=? WHERE id=?";
+
+			$guest = array(
+				'id' => $id,
+				'firstname' => $this->firstname,
+				'lastname' => $this->lastname,
+				'email' => $this->email,
+			);
+
+			$result = $this->database->edit( $sql, $guest );
+			return json_encode( $result );
+		}
+
+		public function deleteGuest( $id ) {
+
+			$sql = "DELETE FROM MyGuests WHERE id=?";
+
+			$result = $this->database->delete( $sql, $id );
 			return json_encode( $result );
 		}
 	}

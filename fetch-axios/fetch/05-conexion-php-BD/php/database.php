@@ -8,7 +8,7 @@
 		private $password = '123456';
 		private $mysqli = null;
 
-		public function connect() {
+		private function connect() {
 
 			$this->mysqli = new mysqli(
 				$this->host,
@@ -24,7 +24,7 @@
 			$this->mysqli->select_db('myDB');
 		}
 
-		public function close() {
+		private function close() {
 
 			if ( $this->mysqli != null ) {
 				$this->mysqli->close();
@@ -34,10 +34,8 @@
 
 		public function insert( $sql, $guest ) {
 			
-			$message = null;
-
 			$this->connect();
-			
+		
 			// mysql object			
 			if ( $stmt = $this->mysqli->prepare( $sql ) ) {
 
@@ -98,7 +96,6 @@
 						);
 
 						array_push( $arrayConsult, $guest );
-
 					}
 
 					$stmt->close();
@@ -128,6 +125,67 @@
 			}
 		}
 
+		public function edit( $sql, $guest ) {
+
+			$this->connect();
+
+			if ( $stmt = $this->mysqli->prepare( $sql ) ) {
+
+				$stmt->bind_param(
+						'sssi', 
+						$guest['firstname'], 
+						$guest['lastname'],
+						$guest['email'],
+						intval( $guest['id'] )
+					);
+
+				$stmt->execute();
+
+				$stmt->close();
+				$this->close();
+
+				$message = $this->showJSON( 200, true, $guest );
+				return $message;
+
+			} else {
+
+				$this->close();
+
+				$message = $this->showJSON( 500, false, 'error en stmt' );
+
+				return $message;	
+			}
+		}
+
+		public function delete( $sql, $id ) {
+
+			$this->connect();
+
+			if ( $stmt = $this->mysqli->prepare( $sql ) ) {			
+
+				$stmt->bind_param(
+					'i', 
+					$id
+				);
+
+				$stmt->execute();
+
+				$stmt->close();
+				$this->close();
+
+				$message = $this->showJSON( 200, true, 'usuario eliminado con éxito' );
+				return $message;
+
+			} else {
+
+				$this->close();
+
+				$message = $this->showJSON( 500, false, 'error en stmt' );
+
+				return $message;	
+			}
+		}
+
 		private function showJSON( $status, $ok, $payload ) {
 
 			return array(
@@ -136,9 +194,7 @@
 				'payload' => $payload
 			);
 		}
+		
 	}
-
-	$db = new Database();
-	$db->consultAll( 'SELECT * FROM MyGuests' );
 
 ?>

@@ -14,11 +14,11 @@
 				
 				<div class="w3-col m12">
 
-					<h2><b>Formulario de Invitados con FetchAPI</b></h2>
+					<h2><b>API de Invitados con Fetch</b></h2>
 
-					<h3>1.- Inserta datos de invitados</h3>
+					<h3>1.- Inserta datos de invitados ( POST )</h3>
 
-					<div class="w3-card w3-padding-large">
+					<div class="w3-card w3-padding-large card">
 						
 						<form id="formulario">
 							<div>
@@ -46,7 +46,7 @@
 
 					</div>
 					
-					<div id="respuesta-insert"></div>
+					<div id="insert"></div>
 
 				</div>
 
@@ -60,7 +60,7 @@
 
 		<div class="w3-container">
 			
-			<h3>2.- Consultar datos todos los invitados</h3>
+			<h3>2.- Consultar datos todos los invitados ( GET )</h3>
 
 			<div class="w3-row">
 				<div class="w3-col m2 w3-center">
@@ -84,12 +84,12 @@
 						<table class="w3-table w3-striped">
 							<thead class="w3-black">
 								<tr>
-									<th>Id:</th>
-									<th>Nombre:</th>
-									<th>Apellido:</th>
-									<th>Correo:</th>
-									<th>Fecha de registro:</th>
-									<th>Acciones:</th>
+									<th class="w3-center">Id:</th>
+									<th class="w3-center">Nombre:</th>
+									<th class="w3-center">Apellido:</th>
+									<th class="w3-center">Correo:</th>
+									<th class="w3-center">Fecha de registro:</th>
+									<th class="w3-center">Acciones:</th>
 								</tr>
 							</thead>
 							<tbody id="table"></tbody>
@@ -104,13 +104,19 @@
 				</div>
 			</div>			
 		</div>
+		
+		<hr>
 
 		<div class="w3-container">
-			<h3>3.- Pulsa el boton de "Editar" para cambiar datos del usuario</h3>
+			<h3>3.- Pulsa el boton de "Editar" para cambiar datos del invitado ( PUT )</h3>
+			<div id="edit"></div>
 		</div>
 
+		<hr>
+
 		<div class="w3-container">
-			<h3>4.- Pulsa el boton de "Eliminar" para eliminar datos del usuario</h3>
+			<h3>4.- Pulsa el boton de "Eliminar" para eliminar datos del invitado ( DELETE )</h3>
+			<div id="delete"></div>
 		</div>
 
 
@@ -128,6 +134,7 @@
 				<div class="w3-container">
 					
 					<form id="editForm">
+						<input type="text" hidden name="id" required> <!-- id -->
 						<div>
 								<label>Nombre:</label>
 								<input type="text" name="firstname" 
@@ -154,6 +161,7 @@
 			</div>
 		</div>
 	
+
 		<!-- Modal delete -->
 		<div class="w3-modal" id="deleteModal">
 			<div class="w3-modal-content">
@@ -169,8 +177,8 @@
 				</div>
 				<footer class="w3-container">
 					<div class="w3-padding-16 w3-right-align">
-						<button class="w3-btn w3-red">Eliminar</button>
-						<button class="w3-btn w3-black">Cancelar</button>
+						<button class="w3-btn w3-red" onclick="deleteGuest()">Eliminar</button>
+						<button class="w3-btn w3-black" onclick="closeModal('deleteModal')">Cancelar</button>
 					</div>
 				</footer>
 			</div>
