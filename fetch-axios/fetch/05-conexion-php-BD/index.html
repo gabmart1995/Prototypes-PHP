@@ -4,62 +4,179 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 		<title>fetch API, Conexion con PHP-BD</title>
+		<link rel="stylesheet" href="./w3.css"> 
+		<link rel="stylesheet" href="./index.css">
 	</head>
 	<body>
+		
+		<div class="w3-container">
+			<div class="w3-row">
+				
+				<div class="w3-col m12">
 
-		<h2>Formulario de Invitados con FetchAPI</h2>
+					<h2><b>Formulario de Invitados con FetchAPI</b></h2>
 
-		<h3>1.- Inserta datos de invitados</h3>
+					<h3>1.- Inserta datos de invitados</h3>
 
-		<form id="formulario">
-			<div>
-				<label for="nombre">Nombre:</label>
-				<input id="nombre" type="text" name="firstname" 
-					placeholder="ingresa nombre ..." required/>
+					<div class="w3-card w3-padding-large">
+						
+						<form id="formulario">
+							<div>
+								<label for="nombre">Nombre:</label>
+								<input type="text" name="firstname" 
+									placeholder="ingresa nombre ..." required class="w3-input" />
+							</div>
+							<div>
+								<label for="apellido">Apellido:</label>
+								<input required type="text" name="lastname"
+									placeholder="ingresa apellido ..." class="w3-input" />
+							</div>
+							<div>
+								<label for="email">Correo:</label>
+								<input 
+									type="email" name="email" 
+									placeholder="ingresa correo ..." required class="w3-input" 
+								/>
+							</div>
+							<div class="w3-padding-16">
+								<button type="submit" class="w3-btn w3-green">Enviar</button>
+								<button type="reset" class="w3-btn w3-black">Cancelar</button>
+							</div>
+						</form>
+
+					</div>
+					
+					<div id="respuesta-insert"></div>
+
+				</div>
+
 			</div>
-			<div>
-				<label for="apellido">Apellido:</label>
-				<input required type="text" name="lastname" id="apellido"
-					placeholder="ingresa apellido ..." />
-			</div>
-			<div>
-				<label for="email">Correo:</label>
-				<input 
-					id="email" type="email" name="email" 
-					placeholder="ingresa correo ..." required 
-				/>
-			</div>
-			<button type="submit">Enviar</button>
-			<button type="reset">Cancelar</button>
-		</form>
 
-		<div id="respuesta-insert"></div>
+		</div>
+	
+		
 
 		<hr>
 
-		<h3>2.- Consultar datos todos los invitados</h3>
+		<div class="w3-container">
+			
+			<h3>2.- Consultar datos todos los invitados</h3>
 
-		<button onclick="consultAllGuest()">
-			Consultar
-		</button>
+			<div class="w3-row">
+				<div class="w3-col m2 w3-center">
 
-		<table>
-			<thead>
-				<tr>
-					<th>Id:</th>
-					<th>Nombre:</th>
-					<th>Apellido:</th>
-					<th>Correo:</th>
-					<th>Fecha de registro:</th>
-				</tr>
-			</thead>
-			<tbody id="table"></tbody>
-		</table>
+					<button onclick="consultAllGuest()" class="w3-btn w3-blue">
+						Consultar
+					</button>
 
-		<p id="message" hidden>No se encontraron resultados</p>
+				</div>
 
-		<p>La tabla crecerá cuantos datos le coloques desde el formulario</p>
+				<div class="w3-col m10 w3-center">
+					<p>Click en el button para consultar todos los usuarios</p>
+				</div>
+			</div>
 
+			<div class="w3-row">
+				<div class="w3-col m12">
+					
+						<div class="flex-center w3-padding-16">
+						
+						<table class="w3-table w3-striped">
+							<thead class="w3-black">
+								<tr>
+									<th>Id:</th>
+									<th>Nombre:</th>
+									<th>Apellido:</th>
+									<th>Correo:</th>
+									<th>Fecha de registro:</th>
+									<th>Acciones:</th>
+								</tr>
+							</thead>
+							<tbody id="table"></tbody>
+						</table>
+
+					</div>
+
+					<p id="message" class="w3-text-red w3-center" hidden>No se encontraron resultados</p>
+
+					<p>La tabla crecerá cuantos datos le coloques desde el formulario</p>
+
+				</div>
+			</div>			
+		</div>
+
+		<div class="w3-container">
+			<h3>3.- Pulsa el boton de "Editar" para cambiar datos del usuario</h3>
+		</div>
+
+		<div class="w3-container">
+			<h3>4.- Pulsa el boton de "Eliminar" para eliminar datos del usuario</h3>
+		</div>
+
+
+		<!-- Modal edit -->
+		<div class="w3-modal" id="editModal">
+			<div class="w3-modal-content">
+				<header class="w3-container">
+					<span 
+						onclick="closeModal('editModal')" 
+						class="w3-button w3-display-topright"
+					>&times;</span>
+					<h3>Editar usuario</h3>
+				</header>
+				
+				<div class="w3-container">
+					
+					<form id="editForm">
+						<div>
+								<label>Nombre:</label>
+								<input type="text" name="firstname" 
+									placeholder="ingresa nombre ..." required class="w3-input" />
+							</div>
+							<div>
+								<label>Apellido:</label>
+								<input required type="text" name="lastname"
+									placeholder="ingresa apellido ..." class="w3-input" />
+							</div>
+							<div>
+								<label>Correo:</label>
+								<input 
+								 	type="email" name="email" 
+									placeholder="ingresa correo ..." required class="w3-input" 
+								/>
+							</div>
+							<div class="w3-padding-16 w3-right-align">
+								<button type="submit" class="w3-btn w3-green">Enviar</button>
+								<button type="reset" class="w3-btn w3-black">Cancelar</button>
+							</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	
+		<!-- Modal delete -->
+		<div class="w3-modal" id="deleteModal">
+			<div class="w3-modal-content">
+				<header class="w3-container">
+					<span 
+						onclick="closeModal('deleteModal')" 
+						class="w3-button w3-display-topright"
+					>&times;</span>
+					<h3 id="modal-title"></h3>
+				</header>
+				<div class="w3-container">
+					<p>¿Desea eliminar al usuario?</p>
+				</div>
+				<footer class="w3-container">
+					<div class="w3-padding-16 w3-right-align">
+						<button class="w3-btn w3-red">Eliminar</button>
+						<button class="w3-btn w3-black">Cancelar</button>
+					</div>
+				</footer>
+			</div>
+		</div>
+
+		
 		<script type="text/javascript" src="./app.js"></script>
 	</body>
 </html> 
