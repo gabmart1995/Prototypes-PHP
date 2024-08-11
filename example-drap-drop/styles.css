@@ -1,0 +1,143 @@
+:root {
+    --color-s: #ff7f80;
+    --color-a: #ffc07f;
+    --color-b: #ffdf80;
+    --color-c: #fdff7f;
+    --color-d: #bfff7f;
+    --color-e: #7fff7f;
+}
+
+/** box sizing */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+button {
+    background: transparent;
+    cursor: pointer;
+    border: none;
+    color: #fff;
+}
+
+body {
+    background-color: #111;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin: 0 auto;
+    max-width: 500px;
+    padding-inline: 32px;
+    user-select: none;
+    color: white;
+}
+
+.item-image {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    cursor: grab;
+    background-color: white;
+}
+
+.item-image.drag-preview {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+#top-header {
+    display: flex;
+    justify-content: center;
+    padding-block: 8px;
+}
+
+#top-header img {
+    max-width: 150px;
+    height: auto;
+}
+
+.tier {
+    border: 1px solid #444;
+    display: flex;
+    flex-direction: column;
+    background-color: #1f1f1f;
+}
+
+.tier .row {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid #111;
+    transition: all 0.3s ease;
+}
+
+.tier .row.drag-over {
+    background: #555;
+    scale: 1.01;
+}   
+
+.tier .row .label {
+    cursor: pointer;
+    background-color: var(--level, #09f); /* custom properties css */
+    color: #333;
+    font-weight: bold;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tier .row .label span:focus {
+    outline: 1px solid #fff;
+}
+
+#selector {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    margin-top: 16px;
+}
+
+#selector #selector-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+#selector #selector-buttons button,
+#selector #selector-buttons label {
+    cursor: pointer;
+    transition: all 0.3 ease;
+    background-color: #222;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 24px;
+    height: 24px;
+    padding: 4px;
+}
+
+#selector #selector-buttons label svg,
+#selector #selector-buttons button svg {
+    width: 100%;
+    height: 100%;
+}
+
+#selector #selector-buttons button:hover,
+#selector #selector-buttons label:hover {
+    scale: 1.1;
+}
+
+#selector-items {
+    height: 100px;
+    width: 100%;
+    border: 1px solid #666;
+    margin-bottom: 100px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#selector-items.drag-files {
+    background-color: #555;
+    border-style: dashed;
+} 
+

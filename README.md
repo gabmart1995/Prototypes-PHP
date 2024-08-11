@@ -10,4 +10,4 @@ para consulta y experimentación.
 
 - 22-08-19: Creación de calendario de eventos con FullCalendar.
 - 15-03-20: Diseño de un servicio de api-rest de invitados con fetch.
-
+- 11-08-24: diseño de drag and drop con JS
